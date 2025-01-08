@@ -18,7 +18,7 @@ function Header(){
     return (
         <HeaderContainer>
         <Logo/>
-        <h1>Controle de Garantia</h1>
+        <h1 text-3xl>Controle de Garantia</h1>
         <ButtonLogin/>
     </HeaderContainer> 
     )
