@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { getEquipments } from '../../services/equipaments';
 
 const TableContainer = styled.table`
 margin:10px;
@@ -20,7 +21,8 @@ caption-side: top;
 
   /* tbody {
     vertical-align: top;
-  }              */
+  }           */
+
   td,
   th {
     padding: 10px 5px;
@@ -32,6 +34,9 @@ caption-side: top;
     border: 1px solid;
   } */
 
+  tr th:nth-child(1), tr td:nth-child(1) {
+      display: none;
+      }
   td {
     padding: 5px 10px;
     }
@@ -53,46 +58,29 @@ caption-side: top;
   }
     `
 
-    const Equipamentos =[
-        {
-            "Equipamento":"Relé de Temperatura",
-            "Local_Retirado":"UFV Arapongas",
-            "Coordenador_UFV":"Leandro",
-            "Pessoa_SetorResponsavel":"Cristian/Comissionamento",
-            "Data_Retirada":"26/12/2024",
-            "Local_Enviado":"UFV Iporã I",
-            "Local_Devolucao":"Não se aplica",
-            "Destinatario":"Não se aplica",
-            "Data_Devolucao":"Não se aplica",
-            "Data_Instalacao":"Não se aplica",
-            "Observacao":"Substituição de equipamento em falha",
-            "Pessoa_Atualizacao":"Danilo Santana"
-        },
-        {
-            "Equipamento":"Relé de Temperatura",
-            "Local_Retirado":"UFV Arapongas",
-            "Coordenador_UFV":"Leandro",
-            "Pessoa_SetorResponsavel":"Cristian/Comissionamento",
-            "Data_Retirada":"26/12/2024",
-            "Local_Enviado":"UFV Iporã I",
-            "Local_Devolucao":"Não se aplica",
-            "Destinatario":"Não se aplica",
-            "Data_Devolucao":"Não se aplica",
-            "Data_Instalacao":"Não se aplica",
-            "Observacao":"Substituição de equipamento em falha",
-            "Pessoa_Atualizacao":"John Doe"
-        }
-
-    ]
-
     
     
     function Table(){
-        const [state, setState] = useState(Equipamentos);
+        const [equipmentsList, setEquipmentsList] = useState([]);
+        
+        async function fetchEquipments(){
+          const equipmentsAPI = await getEquipments()
+          setEquipmentsList(equipmentsAPI);
+
+        }
+        useEffect(() => {
+          fetchEquipments();
+            ;
+        }, [equipmentsList]);
+
+
+
+        
         return (
-        <TableContainer>
+          <TableContainer>
             <thead>
             <tr>
+                <th>ID</th>
                 <th>Material/Equipamento</th>
                 <th>Retirado de</th>
                 <th>Coordenador da usina</th>
@@ -109,13 +97,15 @@ caption-side: top;
             </thead>
 
             <tbody>
-                {state.map((equipamento) => (
-                    <tr key={equipamento.Equipamento}>
+             
+                 {equipmentsList.map((equipamento) => (
+                    <tr key={equipamento._id}>
                         {Object.values(equipamento).map((data) =>(
-                            <td>{data}</td>
-                        ))}
+                          <td>{data}</td>
+                        ))} 
                     </tr>
-                ))}              
+                   
+                ))}             
             </tbody>
         </TableContainer>
     )
