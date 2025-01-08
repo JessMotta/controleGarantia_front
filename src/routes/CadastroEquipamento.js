@@ -1,4 +1,5 @@
 import Button from '../components/Button';
+import Form from '../components/Form';
 import Input from '../components/Input';
 import styled from 'styled-components';
 
@@ -34,7 +35,10 @@ function CadastroEquipamento() {
           Voltar
         </Button>
         <h1 className='title'>Cadastro de Equipamento</h1>
+        <Form>
         {TableTitles.map(title => <Input>{title}</Input>)}
+        </Form>
+        
       </AppContainer>
   );
 }

@@ -20,7 +20,7 @@ const InputContainer = styled.input`
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    width: 500px;
+    width: 800px;
 `
 
 
