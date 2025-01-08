@@ -11,6 +11,21 @@ const AppContainer = styled.div`
   }
 }`
 
+const TableTitles =[
+            'Material/Equipamento',
+            'Retirado de',
+            'Coordenador da usina',
+            'Pessoa/Setor Responsável pela retirada',
+            'Data da retirada',
+            'Enviado para',
+            'Devolução para',
+            'Destinatário',
+            'Devolução enviada em',
+            'Instalado em',
+            'Observação',
+            'Atualizado por'
+]
+
 function CadastroEquipamento() {
   return (
     <AppContainer>
@@ -19,7 +34,7 @@ function CadastroEquipamento() {
           Voltar
         </Button>
         <h1 className='title'>Cadastro de Equipamento</h1>
-        <Input></Input>
+        {TableTitles.map(title => <Input>{title}</Input>)}
       </AppContainer>
   );
 }

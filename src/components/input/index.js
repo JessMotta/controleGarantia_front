@@ -24,12 +24,12 @@ const InputContainer = styled.input`
 `
 
 
-function Input(){
+function Input({children}){
     const [input, setInput] = useState('');
     return(
         <LabelInputContainer>
         <LabelContainer>
-            Material/Equipamento
+            {children}
             <InputContainer 
             placeholder="Digite aqui..." 
             onBlur={event => setInput(event.target.value)}/>
