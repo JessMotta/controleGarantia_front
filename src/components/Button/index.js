@@ -6,16 +6,17 @@ const ButtonContainer = styled.button`
   border-radius:5px;
   font-size: 14px;
   cursor: pointer;
-  border: none;
+  border: 1px solid #1e2229;
   background-color: ${props => props.bgColor || 'white'};
   color: ${props => props.fontColor || '#1e2229'};
 `
 
-function Button({children, bgColor, fontColor}){
+function Button({children, bgColor, fontColor, onClick}){
     return (
         <ButtonContainer 
         bgColor={bgColor} 
-        fontColor={fontColor}>
+        fontColor={fontColor}
+        onClick={onClick}>
             {children}
         </ButtonContainer>
     )

@@ -10,7 +10,10 @@ const AppContainer = styled.div`
 function CadastroEquipamento() {
   return (
     <AppContainer>
-        <Button/>
+        <Button
+        onClick={() => window.location.href = '/'}>
+          Voltar
+        </Button>
         <Input></Input>
       </AppContainer>
   );
