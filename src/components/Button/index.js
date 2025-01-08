@@ -7,14 +7,16 @@ const ButtonContainer = styled.button`
   font-size: 14px;
   cursor: pointer;
   border: none;
-  background-color: #1e2229;
-  color: white;
+  background-color: ${props => props.bgColor || 'white'};
+  color: ${props => props.fontColor || '#1e2229'};
 `
 
-function Button(){
+function Button({children, bgColor, fontColor}){
     return (
-        <ButtonContainer onClick={() => console.log('Cliquei')}>
-        Cadastrar equipamento
+        <ButtonContainer 
+        bgColor={bgColor} 
+        fontColor={fontColor}>
+            {children}
         </ButtonContainer>
     )
 }

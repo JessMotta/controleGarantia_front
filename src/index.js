@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
+import Home from './routes/Home';
 import reportWebVitals from './reportWebVitals';
 import { createGlobalStyle } from 'styled-components';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import Header from './components/Header';
+import CadastroEquipamento from './routes/CadastroEquipamento';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -12,6 +15,9 @@ const GlobalStyle = createGlobalStyle`
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  a{
+    text-decoration: none;
+  }
 }
 
 code {
@@ -24,7 +30,13 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <GlobalStyle />
-    <App />
+    <BrowserRouter>
+    <Header/>
+    <Routes>
+      <Route path='/' element={ <Home />}/>
+      <Route path='/cadastroEquipamento' element={<CadastroEquipamento/>}/>
+    </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

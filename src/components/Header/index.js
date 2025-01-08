@@ -1,6 +1,7 @@
 import Logo from '../Logo'
-import ButtonLogin from '../ButtonLogin'
+import Button from '../Button'
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const HeaderContainer = styled.header`
     background-color: #282c34;
@@ -17,9 +18,11 @@ const HeaderContainer = styled.header`
 function Header(){
     return (
         <HeaderContainer>
-        <Logo/>
+          <Link to='/'>
+            <Logo/>
+          </Link>
         <h1 text-3xl>Controle de Garantia</h1>
-        <ButtonLogin/>
+        <Button>Login</Button>
     </HeaderContainer> 
     )
 }
