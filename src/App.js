@@ -1,4 +1,5 @@
 import Header from './components/Header';
+import Table from './components/Table';
 import styled from 'styled-components';
 
 const AppContainer = styled.div`
@@ -22,6 +23,9 @@ function App() {
       <Header/>
       <div>
         <button className='button'>Cadastrar equipamento</button>
+      </div>
+      <div>
+        <Table/>
       </div>
       </AppContainer>
   );
