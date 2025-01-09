@@ -27,6 +27,8 @@ caption-side: top;
 
   td,
   th {
+    max-width: 200px;
+    word-wrap: break-word;
     padding: 10px 5px;
     border: 1px solid white;
     vertical-align: center;

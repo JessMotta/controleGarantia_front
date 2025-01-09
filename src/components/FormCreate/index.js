@@ -41,7 +41,7 @@ const InfoContainer = styled.h3`
     color: red;
     margin-bottom: 20px;
 `
-function Form(){
+function FormCreate(){
     const {register, handleSubmit} = useForm();
 
     async function onSubmit(data){
@@ -105,4 +105,4 @@ function Form(){
     )
 }
 
-export default Form;
+export default FormCreate;

@@ -2,7 +2,7 @@
 import Input from '../components/Input';
 import { createEquipment } from '../services/equipaments'; */
 import Button from '../components/Button';
-import Form from '../components/Form';
+import FormCreate from '../components/FormCreate';
 import styled from 'styled-components';
 
 const AppContainer = styled.div`
@@ -55,7 +55,7 @@ function CadastroEquipamento() {
           Voltar
         </Button>
         <h1 className='title'>Cadastro de Equipamento</h1>
-        <Form/>
+        <FormCreate/>
         
       </AppContainer>
   );
