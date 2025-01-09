@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
-import { getEquipments } from '../../services/equipaments';
+import { getEquipments, deleteEquipment } from '../../services/equipaments';
+import { BsFillTrash3Fill } from "react-icons/bs";
+import Button from '../Button';
 
 const TableContainer = styled.table`
 margin:10px;
@@ -66,6 +68,12 @@ caption-side: top;
           setEquipmentsList(equipmentsAPI);
           
         }
+
+        async function removeEquipment(id){
+          await deleteEquipment(id);
+          alert(`Equipmamento ${id} deletado com sucesso!`);
+        }
+
         useEffect(() => {
           fetchEquipments();
             ;
@@ -90,6 +98,7 @@ caption-side: top;
                 <th>Instalado em</th>
                 <th>Observação</th>
                 <th>Atualizado por</th>
+                <th>Deletar</th>
             </tr>
             </thead>
 
@@ -110,6 +119,7 @@ caption-side: top;
                       <td>{equipamento.Data_Instalacao}</td>
                       <td>{equipamento.Observacao}</td>
                       <td>{equipamento.Pessoa_Atualizacao}</td>
+                      <td><Button onClick={() => removeEquipment(equipamento.id)}><BsFillTrash3Fill/></Button></td>
                     </tr>
                   )  
                    
