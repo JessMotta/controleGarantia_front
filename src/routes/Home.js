@@ -11,8 +11,8 @@ function Home() {
   return (
     <AppContainer>
         <Button
-          bgColor= {'#1e2229'}
-          fontColor= {'white'}
+          bgcolor= {'#1e2229'}
+          fontcolor= {'white'}
           onClick={() => window.location.href = '/cadastroEquipamento'}>
           Cadastrar equipamento 
           </Button>

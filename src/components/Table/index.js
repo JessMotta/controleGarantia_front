@@ -34,9 +34,7 @@ caption-side: top;
     border: 1px solid;
   } */
 
-  tr th:nth-child(1), tr td:nth-child(1) {
-      display: none;
-      }
+
   td {
     padding: 5px 10px;
     }
@@ -66,7 +64,7 @@ caption-side: top;
         async function fetchEquipments(){
           const equipmentsAPI = await getEquipments()
           setEquipmentsList(equipmentsAPI);
-
+          
         }
         useEffect(() => {
           fetchEquipments();
@@ -80,7 +78,6 @@ caption-side: top;
           <TableContainer>
             <thead>
             <tr>
-                <th>ID</th>
                 <th>Material/Equipamento</th>
                 <th>Retirado de</th>
                 <th>Coordenador da usina</th>
@@ -98,14 +95,25 @@ caption-side: top;
 
             <tbody>
              
-                 {equipmentsList.map((equipamento) => (
-                    <tr key={equipamento._id}>
-                        {Object.values(equipamento).map((data) =>(
-                          <td>{data}</td>
-                        ))} 
+                 {equipmentsList.map((equipamento) => {                 
+                  return (
+                    <tr key={equipamento.id}>
+                      <td>{equipamento.Equipamento}</td>
+                      <td>{equipamento.Local_Retirado}</td>
+                      <td>{equipamento.Coordenador_UFV}</td>
+                      <td>{equipamento.Pessoa_SetorResponsavel}</td>
+                      <td>{equipamento.Data_Retirada}</td>
+                      <td>{equipamento.Local_Enviado}</td>
+                      <td>{equipamento.Local_Devolucao}</td>
+                      <td>{equipamento.Destinatario}</td>
+                      <td>{equipamento.Data_Devolucao}</td>
+                      <td>{equipamento.Data_Instalacao}</td>
+                      <td>{equipamento.Observacao}</td>
+                      <td>{equipamento.Pessoa_Atualizacao}</td>
                     </tr>
+                  )  
                    
-                ))}             
+                })}             
             </tbody>
         </TableContainer>
     )

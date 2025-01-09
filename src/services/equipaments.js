@@ -7,16 +7,11 @@ const equipmentsAPI = axios.create({baseURL: apiLocal});
 
 export async function getEquipments() {
    const response = await equipmentsAPI.get('/')
-   console.log(response.data);
-
-   return response.data;
+    return response.data;
 }
 
 export async function createEquipment(createdEquipment){
-    const response = await equipmentsAPI.post('/', createdEquipment);
-    console.log(response.data);
-
-    return response.data;
+    await equipmentsAPI.post('/', createdEquipment);
 }
 
 export async function updateEquipment(updatedEquipment){

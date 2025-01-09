@@ -21,7 +21,7 @@ function Header(){
           <Link to='/'>
             <Logo/>
           </Link>
-        <h1 text-3xl>Controle de Garantia</h1>
+        <h1>Controle de Garantia</h1>
         <Button>Login</Button>
     </HeaderContainer> 
     )

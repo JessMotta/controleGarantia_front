@@ -1,6 +1,8 @@
+/* import { useState, useEffect } from 'react';
+import Input from '../components/Input';
+import { createEquipment } from '../services/equipaments'; */
 import Button from '../components/Button';
 import Form from '../components/Form';
-import Input from '../components/Input';
 import styled from 'styled-components';
 
 const AppContainer = styled.div`
@@ -12,22 +14,40 @@ const AppContainer = styled.div`
   }
 }`
 
-const TableTitles =[
-            'Material/Equipamento',
-            'Retirado de',
-            'Coordenador da usina',
-            'Pessoa/Setor Responsável pela retirada',
-            'Data da retirada',
-            'Enviado para',
-            'Devolução para',
-            'Destinatário',
-            'Devolução enviada em',
-            'Instalado em',
-            'Observação',
-            'Atualizado por'
-]
+// const TableTitles =[
+//   {
+//   'equipamento': 'Material/Equipamento',
+//   'retirado':'Retirado de',
+//   'coordenador':'Coordenador da usina',
+//   'responsavel':'Pessoa/Setor Responsável pela retirada',
+//   'data-retirada':'Data da retirada',
+//   'enviado':'Enviado para',
+//   'local-devolucao':'Devolução para',
+//   'destinatario':'Destinatário',
+//   'data-devolucao':'Devolução enviada em',
+//   'local-instalado':'Instalado em',
+//   'observacao':'Observação',
+//   'atualizado':'Atualizado por'
+// }
+// ]
 
 function CadastroEquipamento() {
+  
+
+ 
+
+
+  // async function insertEquipment(equipment){
+  //   const insertedEquipment = await createEquipment(equipment);
+  //   setEquipment(insertedEquipment);
+  // }
+
+  // useEffect(() => {
+  //   insertEquipment();
+  // }, [])
+
+
+
   return (
     <AppContainer>
         <Button
@@ -35,9 +55,7 @@ function CadastroEquipamento() {
           Voltar
         </Button>
         <h1 className='title'>Cadastro de Equipamento</h1>
-        <Form>
-        {TableTitles.map(title => <Input>{title}</Input>)}
-        </Form>
+        <Form/>
         
       </AppContainer>
   );
