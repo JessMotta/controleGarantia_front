@@ -14,6 +14,11 @@ export async function createEquipment(createdEquipment){
     await equipmentsAPI.post('/', createdEquipment);
 }
 
+export async function getEquipmentById(id) {
+    const response = await equipmentsAPI.get(`/${id}`);
+     return response.data;
+ }
+
 export async function updateEquipment(updatedEquipment){
     const response = await equipmentsAPI.put(`/${updatedEquipment._id}`, updatedEquipment);
     console.log(response.data);

@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
-import { getEquipments, deleteEquipment } from '../../services/equipaments';
-import { BsFillTrash3Fill } from "react-icons/bs";
+import { getEquipments, getEquipmentById, deleteEquipment } from '../../services/equipaments';
+import { BsFillTrash3Fill, BsArchive } from "react-icons/bs";
 import Button from '../Button';
+import { useNavigate } from 'react-router-dom';
+
 
 const TableContainer = styled.table`
 margin:10px;
@@ -27,7 +29,7 @@ caption-side: top;
 
   td,
   th {
-    max-width: 200px;
+    max-width: 155px;
     word-wrap: break-word;
     padding: 10px 5px;
     border: 1px solid white;
@@ -64,12 +66,19 @@ caption-side: top;
     
     function Table(){
         const [equipmentsList, setEquipmentsList] = useState([]);
+        const navigate = useNavigate();
         
         async function fetchEquipments(){
           const equipmentsAPI = await getEquipments()
           setEquipmentsList(equipmentsAPI);
           
         }
+
+        
+        async function fetchEquipmentById(equipamento){
+          navigate(`/atualizacaoEquipamento/${equipamento.id}`, {state: {equipamento}});
+        }
+ 
 
         async function removeEquipment(id){
           await deleteEquipment(id);
@@ -88,7 +97,7 @@ caption-side: top;
           <TableContainer>
             <thead>
             <tr>
-                <th>Material/Equipamento</th>
+                <th>Material/ Equipamento</th>
                 <th>Retirado de</th>
                 <th>Coordenador da usina</th>
                 <th>Pessoa/Setor Responsável pela retirada</th>
@@ -100,6 +109,7 @@ caption-side: top;
                 <th>Instalado em</th>
                 <th>Observação</th>
                 <th>Atualizado por</th>
+                <th>Editar</th>
                 <th>Deletar</th>
             </tr>
             </thead>
@@ -121,6 +131,7 @@ caption-side: top;
                       <td>{equipamento.Data_Instalacao}</td>
                       <td>{equipamento.Observacao}</td>
                       <td>{equipamento.Pessoa_Atualizacao}</td>
+                      <td><Button onClick={() => fetchEquipmentById(equipamento)}><BsArchive /></Button></td>
                       <td><Button onClick={() => removeEquipment(equipamento.id)}><BsFillTrash3Fill/></Button></td>
                     </tr>
                   )  

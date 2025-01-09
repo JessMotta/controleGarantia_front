@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
-import { createEquipment } from '../../services/equipaments';
-import { Link } from 'react-router-dom';
 import Button from '../Button';
+import { updateEquipment } from '../../services/equipaments';
 
 const FormContainer =styled.form`
     display: flex;
@@ -41,15 +40,17 @@ const InfoContainer = styled.h3`
     color: red;
     margin-bottom: 20px;
 `
-function FormCreate(){
+function FormUpdate(id){
     const {register, handleSubmit} = useForm();
+   
 
     async function onSubmit(data){
-       await createEquipment(data);
+       await updateEquipment(data);
          window.location.href = '/';
 
     } 
 
+   
 
 
     return (
@@ -58,10 +59,10 @@ function FormCreate(){
         <FormContainer onSubmit={handleSubmit(onSubmit)}>
             <LabelInputContainer>
             <LabelContainer htmlFor="Equipamento">Material/Equipamento</LabelContainer>
-            <InputContainer {...register('Equipamento', {required: true})} type="text" placeholder='Digite aqui o material/equipamento...' />
+            <InputContainer {...register('Equipamento', {required: true})} type="text" />
 
             <LabelContainer htmlFor="Local_Retirado">Retirado de</LabelContainer>
-            <InputContainer {...register('Local_Retirado')} type="text" placeholder='Digite aqui o local de onde foi tirado...'/>
+            <InputContainer {...register('Local_Retirado')} type="text"/>
 
             <LabelContainer htmlFor="Coordenador_UFV">Coordenador da UFV</LabelContainer>
             <InputContainer {...register('Coordenador_UFV')} type="text"  placeholder='Digite aqui quem é coordenar da UFV...'/>
@@ -97,14 +98,12 @@ function FormCreate(){
         </LabelInputContainer>
         
             <ButtonsContainer>
-               <Button bgcolor={'#1e2229'} fontcolor={'white'} type={'submit'}>Salvar</Button>
-               <Link to={'/'}>
-                <Button>Cancelar</Button>
-                </Link>
+               <Button bgcolor={'#1e2229'} fontcolor={'white'} type={'submit'}>Atualizar</Button>
+                <Button onClick={() => window.location.href= '/'}>Cancelar</Button>
             </ButtonsContainer>
         </FormContainer>
         </>
     )
 }
 
-export default FormCreate;
+export default FormUpdate;

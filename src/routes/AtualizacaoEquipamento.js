@@ -1,7 +1,7 @@
 import Button from '../components/Button';
-import FormCreate from '../components/FormCreate';
+import FormUpdate from '../components/FormUpdate';
 import styled from 'styled-components';
-import { Link } from'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 
 const AppContainer = styled.div`
   width: 100%;
@@ -11,7 +11,10 @@ const AppContainer = styled.div`
     text-align: center;
   }
 }`
-function CadastroEquipamento() {
+function AtualizacaoEquipamento() {
+  const {state} = useLocation();
+  const {equipamento} = state;
+  
   return (
     <AppContainer>
       <Link to={'/'}>
@@ -19,11 +22,11 @@ function CadastroEquipamento() {
           Voltar
         </Button>
         </Link>
-        <h1 className='title'>Cadastro de Equipamento</h1>
-        <FormCreate/>
+        <h1 className='title'>Atualização de Equipamento</h1>
+        <FormUpdate/>
         
       </AppContainer>
   );
 }
 
-export default CadastroEquipamento;
+export default AtualizacaoEquipamento;
