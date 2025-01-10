@@ -12,9 +12,9 @@ const AppContainer = styled.div`
   }
 }`
 function AtualizacaoEquipamento() {
-  const {state} = useLocation();
-  const {equipamento} = state;
-  
+  // const {state} = useLocation();
+  // const {equipamento} = state;
+
   return (
     <AppContainer>
       <Link to={'/'}>

@@ -16,14 +16,15 @@ export async function createEquipment(createdEquipment){
 
 export async function getEquipmentById(id) {
     const response = await equipmentsAPI.get(`/${id}`);
+    //console.log(response.data);
      return response.data;
  }
 
-export async function updateEquipment(updatedEquipment){
-    const response = await equipmentsAPI.put(`/${updatedEquipment._id}`, updatedEquipment);
+export async function updateEquipment(id, updatedEquipment){
+const response = await equipmentsAPI.put(`/${id}`, updatedEquipment);
     console.log(response.data);
 
-    return response.data;
+return response.data;
 }
 
 export async function deleteEquipment(id){
