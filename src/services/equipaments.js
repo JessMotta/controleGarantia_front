@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const apiOnline ='https://controle-garantia-c3160bdc917a.herokuapp.com/equipamentos';
-const apiLocal = 'http://localhost:8080/equipamentos';
+//const apiLocal = 'http://localhost:8080/equipamentos';
 
 const equipmentsAPI = axios.create({baseURL: apiOnline});
 

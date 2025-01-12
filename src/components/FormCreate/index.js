@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form';
 import { createEquipment } from '../../services/equipaments';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from '../Button';
-import { useEffect } from 'react';
 import { toast } from 'react-toastify';
 
 const FormContainer =styled.form`
