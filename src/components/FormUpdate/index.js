@@ -59,7 +59,7 @@ function FormUpdate(){
         const verifyInputs = Object.values(data);
 
         if(verifyInputs.includes('') || verifyInputs.includes(undefined)){
-            toast.error('Todos os campos devem ser preenchidos!', {autoClose: 3000});
+            toast.error('Todos os campos devem estar preenchidos!', {autoClose: 3000});
             return;
         } else {
             await updateEquipment(id, data);

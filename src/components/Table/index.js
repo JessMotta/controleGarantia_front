@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
-import { getEquipments, getEquipmentById, deleteEquipment } from '../../services/equipaments';
+import { getEquipments, deleteEquipment } from '../../services/equipaments';
 import { BsFillTrash3Fill, BsArchive } from "react-icons/bs";
 import Button from '../Button';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import Modal from '../Modal';
 
 
 const TableContainer = styled.table`
@@ -62,10 +64,16 @@ caption-side: top;
   }
     `
 
-    
+const ModalButtons = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+`
     
     function Table(){
         const [equipmentsList, setEquipmentsList] = useState([]);
+        const [showModal, setShowModal] = useState(false);
+        const [idEquipment, setIdEquipment] = useState();
         const navigate = useNavigate();
         
         async function fetchEquipments(){
@@ -74,17 +82,30 @@ caption-side: top;
           
         }
 
-        
+        // envia para outra página os dados do equipamento para serem atualizados
         async function fetchEquipmentById(equipamento){
           navigate(`/atualizacaoEquipamento/${equipamento.id}`, {state: {equipamento}});
         }
- 
 
-        async function removeEquipment(id){
-          await deleteEquipment(id);
-          alert(`Equipmamento ${id} deletado com sucesso!`);
+        // Funções para o botão modal, deletar ou cancelar a remoção do equipamento da lista
+        function openConfirmation(equipamento){
+          setShowModal(true);
+          setIdEquipment(equipamento.id);
         }
 
+        function closeConfirmation(){
+          setShowModal(false);
+        }
+       
+        // remove o equipamento da lista
+        async function removeEquipment(){
+          await deleteEquipment(idEquipment);
+          setShowModal(false);
+          toast.warn('Equipamento deletado com sucesso!', {autoClose: 3000});
+        }
+
+        
+        // carrega lista de equipamentos
         useEffect(() => {
           fetchEquipments();
             ;
@@ -94,6 +115,7 @@ caption-side: top;
 
         
         return (
+          <>
           <TableContainer>
             <thead>
             <tr>
@@ -132,13 +154,22 @@ caption-side: top;
                       <td>{equipamento.Observacao}</td>
                       <td>{equipamento.Pessoa_Atualizacao}</td>
                       <td><Button onClick={() => fetchEquipmentById(equipamento)}><BsArchive /></Button></td>
-                      <td><Button onClick={() => removeEquipment(equipamento.id)}><BsFillTrash3Fill/></Button></td>
+                      <td><Button onClick={() => openConfirmation(equipamento)}><BsFillTrash3Fill/></Button></td>
                     </tr>
                   )  
                    
                 })}             
             </tbody>
-        </TableContainer>
+            <Modal isOpen={showModal}>
+              <p>Você deseja remover esse equipamento da lista?</p>
+            <ModalButtons>
+              <Button onClick={removeEquipment}>Deletar</Button>
+              <Button bgcolor={'#1e2229'} fontcolor={'white'} onClick={closeConfirmation}>Cancelar</Button>
+            </ModalButtons>
+          </Modal> 
+          </TableContainer>
+         
+          </>
     )
 }
 

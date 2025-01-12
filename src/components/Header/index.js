@@ -22,7 +22,7 @@ function Header(){
             <Logo/>
           </Link>
         <h1>Controle de Garantia</h1>
-        <Button>Login</Button>
+        <Button status={'disabled'}>Login</Button>
     </HeaderContainer> 
     )
 }
