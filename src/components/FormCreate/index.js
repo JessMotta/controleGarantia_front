@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
 import { createEquipment } from '../../services/equipaments';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from '../Button';
+import { useEffect } from 'react';
+import { toast } from 'react-toastify';
 
 const FormContainer =styled.form`
     display: flex;
@@ -43,13 +45,24 @@ const InfoContainer = styled.h3`
 `
 function FormCreate(){
     const {register, handleSubmit} = useForm();
+    const navigate = useNavigate();
+   
 
     async function onSubmit(data){
-       await createEquipment(data);
-         window.location.href = '/';
-
-    } 
-
+        const verifyInputs = Object.values(data);
+        console.log(verifyInputs);
+        if(verifyInputs.includes('') || verifyInputs.includes(undefined)){
+            toast.error('Todos os campos devem ser preenchidos!', {autoClose: 3000});
+            return;
+        } else {
+                 await createEquipment(data);
+                 console.log(verifyInputs);
+                 toast.success('Equipamento cadastrado com sucesso!', {autoClose: 3000});
+                 navigate('/');
+             }
+        
+            
+        }
 
 
     return (
@@ -58,7 +71,7 @@ function FormCreate(){
         <FormContainer onSubmit={handleSubmit(onSubmit)}>
             <LabelInputContainer>
             <LabelContainer htmlFor="Equipamento">Material/Equipamento</LabelContainer>
-            <InputContainer {...register('Equipamento', {required: true})} type="text" placeholder='Digite aqui o material/equipamento...' />
+            <InputContainer {...register('Equipamento')} type="text" placeholder='Digite aqui o material/equipamento...' />
 
             <LabelContainer htmlFor="Local_Retirado">Retirado de</LabelContainer>
             <InputContainer {...register('Local_Retirado')} type="text" placeholder='Digite aqui o local de onde foi tirado...'/>
@@ -97,7 +110,7 @@ function FormCreate(){
         </LabelInputContainer>
         
             <ButtonsContainer>
-               <Button bgcolor={'#1e2229'} fontcolor={'white'} type={'submit'}>Salvar</Button>
+               <Button bgcolor={'#1e2229'} fontcolor={'white'} type={'submit'} >Salvar</Button>
                <Link to={'/'}>
                 <Button>Cancelar</Button>
                 </Link>

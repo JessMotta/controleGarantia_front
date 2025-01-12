@@ -7,6 +7,9 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Header from './components/Header';
 import CadastroEquipamento from './routes/CadastroEquipamento';
 import AtualizacaoEquipamento from './routes/AtualizacaoEquipamento';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from'react-toastify';
+
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -31,6 +34,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <GlobalStyle />
+    <ToastContainer />
     <BrowserRouter>
     <Header/>
     <Routes>

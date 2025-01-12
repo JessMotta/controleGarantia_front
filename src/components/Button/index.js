@@ -9,15 +9,22 @@ const ButtonContainer = styled.button`
   border: 1px solid #1e2229;
   background-color: ${(props) => props.bgcolor || 'white'};
   color: ${(props) => props.fontcolor || '#1e2229'};
+  &:disabled{
+    background-color: #ccc;
+    color: #666;
+    border-color: ##ccc;
+    cursor: not-allowed;    
+    }
 `
 
-function Button({children, bgcolor, fontcolor, onClick, type}){
+function Button({children, bgcolor, fontcolor, onClick, type, status}){
     return (
         <ButtonContainer 
         bgcolor={bgcolor} 
         fontcolor={fontcolor}
         onClick={onClick}
-        type={type}>
+        type={type}
+        disabled={status}>
             {children}
         </ButtonContainer>
     )

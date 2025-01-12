@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
 import Button from '../Button';
-import { useParams, useLocation } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 import { updateEquipment, getEquipmentById } from '../../services/equipaments';
+import { toast } from 'react-toastify';
 
 const FormContainer =styled.form`
     display: flex;
@@ -44,6 +45,7 @@ const InfoContainer = styled.h3`
 `
 function FormUpdate(){
     const {register, handleSubmit, reset} = useForm();
+    const navigate = useNavigate();
     const { id } = useParams();
 
 
@@ -55,14 +57,16 @@ function FormUpdate(){
 
    async function onSubmit(data){
         await updateEquipment(id, data);
-        window.location.href = '/';
+        toast.success('Equipamento atualizado com sucesso!', {autoClose: 3000});
+        navigate('/');
     }
 
     async function cleanInputs(){
         const getEquipmentInitial = await getEquipmentById(id);
         delete getEquipmentInitial.id;
         reset(getEquipmentInitial);
-        window.location.href = '/';
+        toast.warn('Equipamento não foi atualizado!', {autoClose: 3000});
+        navigate('/');
     }
     
     
