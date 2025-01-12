@@ -50,15 +50,14 @@ function FormCreate(){
 
     async function onSubmit(data){
         const verifyInputs = Object.values(data);
-        console.log(verifyInputs);
+
         if(verifyInputs.includes('') || verifyInputs.includes(undefined)){
             toast.error('Todos os campos devem ser preenchidos!', {autoClose: 3000});
             return;
         } else {
-                 await createEquipment(data);
-                 console.log(verifyInputs);
-                 toast.success('Equipamento cadastrado com sucesso!', {autoClose: 3000});
-                 navigate('/');
+            await createEquipment(data);
+            toast.success('Equipamento cadastrado com sucesso!', {autoClose: 3000});
+            navigate('/');
              }
         
             

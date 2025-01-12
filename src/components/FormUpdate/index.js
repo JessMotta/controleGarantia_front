@@ -56,9 +56,16 @@ function FormUpdate(){
     }
 
    async function onSubmit(data){
-        await updateEquipment(id, data);
-        toast.success('Equipamento atualizado com sucesso!', {autoClose: 3000});
-        navigate('/');
+        const verifyInputs = Object.values(data);
+
+        if(verifyInputs.includes('') || verifyInputs.includes(undefined)){
+            toast.error('Todos os campos devem ser preenchidos!', {autoClose: 3000});
+            return;
+        } else {
+            await updateEquipment(id, data);
+            toast.success('Equipamento atualizado com sucesso!', {autoClose: 3000});
+            navigate('/');
+        }
     }
 
     async function cleanInputs(){
