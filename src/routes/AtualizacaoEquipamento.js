@@ -1,7 +1,7 @@
 import Button from '../components/Button';
 import FormUpdate from '../components/FormUpdate';
 import styled from 'styled-components';
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const AppContainer = styled.div`
   width: 100%;
@@ -12,8 +12,7 @@ const AppContainer = styled.div`
   }
 }`
 function AtualizacaoEquipamento() {
-  // const {state} = useLocation();
-  // const {equipamento} = state;
+
 
   return (
     <AppContainer>
