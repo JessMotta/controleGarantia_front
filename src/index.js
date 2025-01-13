@@ -38,9 +38,9 @@ root.render(
     <BrowserRouter>
     <Header/>
     <Routes>
-      <Route path='jessmotta.github.io/controleGarantia_front/' element={ <Home />}/>
-      <Route path='jessmotta.github.io/controleGarantia_front/cadastroEquipamento' element={<CadastroEquipamento/>}/>
-      <Route path='jessmotta.github.io/controleGarantia_front/atualizacaoEquipamento/:id' element={<AtualizacaoEquipamento/>}/>
+      <Route path='/' element={ <Home />}/>
+      <Route path='/cadastroEquipamento' element={<CadastroEquipamento/>}/>
+      <Route path='/atualizacaoEquipamento/:id' element={<AtualizacaoEquipamento/>}/>
     </Routes>
     </BrowserRouter>
   </React.StrictMode>
